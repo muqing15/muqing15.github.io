@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>【Nmap】二、6种端口状态 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、open(开放)应用程序正在使用该端口接受TCP或者UDP报文。状态为open的端口通常是扫描的主要目标。 2、closed(关闭)关闭的端口对于Nmap也是可访问的(它接受Nmap的探测报文并作出相应)，但是并没有应用程序在其上监听。但是它们可以显示探测IP地址上的主机是运行中的，并且对部分操作系统的探测也是有帮助的。 如果从系统安全的角度考虑，应该考虑用防火墙封锁这些端口，使之变为filt">
+  <meta name="description" content="1、open(开放)应用程序正在使用该端口接受TCP或者UDP报文。状态为open的端口通常是扫描的主要目标。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Nmap】二、6种端口状态">
 <meta property="og:url" content="http://example.com/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1、open(开放)应用程序正在使用该端口接受TCP或者UDP报文。状态为open的端口通常是扫描的主要目标。 2、closed(关闭)关闭的端口对于Nmap也是可访问的(它接受Nmap的探测报文并作出相应)，但是并没有应用程序在其上监听。但是它们可以显示探测IP地址上的主机是运行中的，并且对部分操作系统的探测也是有帮助的。 如果从系统安全的角度考虑，应该考虑用防火墙封锁这些端口，使之变为filt">
+<meta property="og:description" content="1、open(开放)应用程序正在使用该端口接受TCP或者UDP报文。状态为open的端口通常是扫描的主要目标。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-04T18:38:57.000Z">
-<meta property="article:modified_time" content="2020-12-04T18:40:15.012Z">
+<meta property="article:modified_time" content="2020-12-05T05:02:59.558Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Nmap">
 <meta name="twitter:card" content="summary">
@@ -167,6 +167,9 @@
   
 
         
+        阅读数: 次
+        
+        
         <a href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/" class="archive-article-date">
   	<time datetime="2020-12-04T18:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-05</time>
 </a>
@@ -176,6 +179,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1、open-开放"><a href="#1、open-开放" class="headerlink" title="1、open(开放)"></a>1、open(开放)</h2><p>应用程序正在使用该端口接受<code>TCP</code>或者<code>UDP</code>报文。状态为open的端口通常是扫描的主要目标。</p>
+<a id="more"></a>
 <h2 id="2、closed-关闭"><a href="#2、closed-关闭" class="headerlink" title="2、closed(关闭)"></a>2、closed(关闭)</h2><p>关闭的端口对于<code>Nmap</code>也是可访问的(它接受<code>Nmap</code>的探测报文并作出相应)，但是并没有应用程序在其上监听。但是它们可以显示探测<code>IP</code>地址上的主机是运行中的，并且对部分操作系统的探测也是有帮助的。</p>
 <p>如果从系统安全的角度考虑，应该考虑用防火墙封锁这些端口，使之变为<code>filtered</code>状态</p>
 <h2 id="3、filtered-被过滤的"><a href="#3、filtered-被过滤的" class="headerlink" title="3、filtered(被过滤的)"></a>3、filtered(被过滤的)</h2><p>由于包过滤阻止探测报文到达端口，<code>Nmap</code>无法确定该端口是否开放。<strong>这样的端口几乎不提供任何信息。</strong></p>

@@ -164,6 +164,7 @@
   
 
         
+        
         <a href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/" class="archive-article-date">
   	<time datetime="2020-12-04T18:01:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-05</time>
 </a>
@@ -172,7 +173,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Nmap是一款开源，免费的网络探测，安全审计工具。<br>css
+        <p>Nmap是一款开源，免费的网络探测，安全审计工具。</p>
         
           <a class="article-more-a" href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/#more">more >></a>
         
@@ -240,6 +241,7 @@
   
 
         
+        
         <a href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/" class="archive-article-date">
   	<time datetime="2020-12-04T18:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-05</time>
 </a>
@@ -249,22 +251,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1、open-开放"><a href="#1、open-开放" class="headerlink" title="1、open(开放)"></a>1、open(开放)</h2><p>应用程序正在使用该端口接受<code>TCP</code>或者<code>UDP</code>报文。状态为open的端口通常是扫描的主要目标。</p>
-<h2 id="2、closed-关闭"><a href="#2、closed-关闭" class="headerlink" title="2、closed(关闭)"></a>2、closed(关闭)</h2><p>关闭的端口对于<code>Nmap</code>也是可访问的(它接受<code>Nmap</code>的探测报文并作出相应)，但是并没有应用程序在其上监听。但是它们可以显示探测<code>IP</code>地址上的主机是运行中的，并且对部分操作系统的探测也是有帮助的。</p>
-<p>如果从系统安全的角度考虑，应该考虑用防火墙封锁这些端口，使之变为<code>filtered</code>状态</p>
-<h2 id="3、filtered-被过滤的"><a href="#3、filtered-被过滤的" class="headerlink" title="3、filtered(被过滤的)"></a>3、filtered(被过滤的)</h2><p>由于包过滤阻止探测报文到达端口，<code>Nmap</code>无法确定该端口是否开放。<strong>这样的端口几乎不提供任何信息。</strong></p>
-<p>有时候它们相应<code>ICMP</code>错误信息如类型3代码13(无法到达目标：通信被管理员禁止)，但更普遍的是过滤器只是丢弃探测帧，不作任何相应。</p>
-<p>过滤可能来自：</p>
-<ul>
-<li>专业的防火墙设备</li>
-<li>路由器规则</li>
-<li>主机上的防火墙设置</li>
-</ul>
-<h2 id="4、unfiltered-未被过滤的"><a href="#4、unfiltered-未被过滤的" class="headerlink" title="4、unfiltered(未被过滤的)"></a>4、unfiltered(未被过滤的)</h2><p>未被过滤表示端口可访问，但是<code>Nmap</code>不确定它是关闭还是开放。只有用于映射防火墙规则集的ACK扫描才会把端口分类到这种状态。</p>
-<p>但可以用其他类型的扫描如窗口扫描，SYN扫描，或者FIN扫描来扫描未被过滤的端口可以帮助确定端口是否开放。</p>
-<h2 id="5、open-filtered-开放或者被过滤的"><a href="#5、open-filtered-开放或者被过滤的" class="headerlink" title="5、open|filtered(开放或者被过滤的)"></a>5、open|filtered(开放或者被过滤的)</h2><p>当无法确定端口是否开放还是被过滤的，就会把端口划分为这种状态。开放的端口不响应就是这种状态。</p>
-<p>没有相应可能意味着，报文过滤器丢弃了探测报文</p>
-<h2 id="6、closed-filtered-关闭或者被过滤的"><a href="#6、closed-filtered-关闭或者被过滤的" class="headerlink" title="6、closed|filtered(关闭或者被过滤的)"></a>6、closed|filtered(关闭或者被过滤的)</h2><p>该状态用于Nmap不能确定端口是关闭还是被过滤的。</p>
-
+        
+          <a class="article-more-a" href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/#more">more >></a>
+        
       
 
       
