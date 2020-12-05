@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>关于Range用法的一下想法 | muqing的博客</title>
+  <title>【go】关于Range用法的一些感想 | muqing的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="For every complex problem there is an answer that is clear , simple , and wrong.任何复杂的问题，都有一个简单的错误答案。—-H.L.Mencken">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于Range用法的一下想法">
-<meta property="og:url" content="http://example.com/2020/12/06/%E3%80%90go%E3%80%91%E5%85%B3%E4%BA%8ERange%E7%94%A8%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%8B%E6%83%B3%E6%B3%95/index.html">
+<meta property="og:title" content="【go】关于Range用法的一些感想">
+<meta property="og:url" content="http://example.com/2020/12/06/%E3%80%90go%E3%80%91%E5%85%B3%E4%BA%8ERange%E7%94%A8%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/index.html">
 <meta property="og:site_name" content="muqing的博客">
 <meta property="og:description" content="For every complex problem there is an answer that is clear , simple , and wrong.任何复杂的问题，都有一个简单的错误答案。—-H.L.Mencken">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-12-05T16:02:17.000Z">
-<meta property="article:modified_time" content="2020-12-05T16:11:37.225Z">
+<meta property="article:published_time" content="2020-12-05T16:14:53.000Z">
+<meta property="article:modified_time" content="2020-12-05T16:16:08.191Z">
 <meta property="article:author" content="Mu Qing">
 <meta property="article:tag" content="go">
 <meta property="article:tag" content="随笔">
@@ -150,20 +150,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-【go】关于Range用法的一下想法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-【go】关于Range用法的一些感想" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      关于Range用法的一下想法
+      【go】关于Range用法的一些感想
     </h1>
   
 
         
-        <a href="/2020/12/06/%E3%80%90go%E3%80%91%E5%85%B3%E4%BA%8ERange%E7%94%A8%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%8B%E6%83%B3%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-12-05T16:02:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-06</time>
+        <a href="/2020/12/06/%E3%80%90go%E3%80%91%E5%85%B3%E4%BA%8ERange%E7%94%A8%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/" class="archive-article-date">
+  	<time datetime="2020-12-05T16:14:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-06</time>
 </a>
         
       </header>
@@ -175,7 +175,7 @@
 </blockquote>
 <hr>
 <a id="more"></a>
-<p>&emsp;&emsp;今天在复习管道的用法的时候，想实现两个协程，一个协程负责向管道中写入10个数字，另一个协程负责从管道中读出这10个数字，就是下面这个程序。</p>
+<p>&emsp;&emsp;今天在复习管道的用法时，想实现两个协程，一个协程负责向管道中写入10个数字，另一个协程负责从管道中读出这10个数字，就是下面这个程序。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	wg.Add(<span class="number">2</span>)</span><br><span class="line">	ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span> , <span class="number">10</span>)</span><br><span class="line">	<span class="keyword">go</span> SetChan(ch)</span><br><span class="line">	<span class="keyword">go</span> LoadChan(ch)</span><br><span class="line">	wg.Wait()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写入数值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SetChan</span><span class="params">(ch <span class="keyword">chan</span> &lt;- <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span> ; i &lt; <span class="number">10</span> ; i++&#123;</span><br><span class="line">		ch &lt;- i</span><br><span class="line">	&#125;</span><br><span class="line">        <span class="built_in">close</span>(ch)</span><br><span class="line">	<span class="keyword">defer</span> wg.Done()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 负责从ch中读取数值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LoadChan</span><span class="params">(ch &lt;- <span class="keyword">chan</span> <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> v := <span class="keyword">range</span> ch &#123;</span><br><span class="line">		fmt.Println(v)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> wg.Done()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// all goroutines are asleep - deadlock!</span></span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;然后，编译器果然无情地报错:”all goroutines are asleep - deadlock!”这让我意识到，可能是<strong>range这个方法读取channel的时候并不是读取完成之后，就立即退出，而是陷入阻塞，期待channel中再次被写入数据</strong>，所以并不会执行wg.Done()，而主协程的wg.Wait()一直等不到该协程执行wg.Done()，然后程序陷入死锁。<br>&emsp;&emsp;为了验证我的想法，重新设计LoadChan()函数，在其中加入一个判断，如果读取完成，就使用break停止，重写后的LoadChan()函数如下所示：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LoadChan</span><span class="params">(ch &lt;- <span class="keyword">chan</span> <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">     <span class="comment">// 等待setChan协程写完数据</span></span><br><span class="line">	time.Sleep(time.Second)</span><br><span class="line">	<span class="keyword">for</span> v := <span class="keyword">range</span> ch &#123;</span><br><span class="line">		fmt.Println(v)</span><br><span class="line">        <span class="comment">// 如果读取完成，就停止</span></span><br><span class="line">		<span class="keyword">if</span> <span class="built_in">len</span>(ch) == <span class="number">0</span>&#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> wg.Done()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -274,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/06/%E3%80%90go%E3%80%91%E5%85%B3%E4%BA%8ERange%E7%94%A8%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%8B%E6%83%B3%E6%B3%95/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/06/%E3%80%90go%E3%80%91%E5%85%B3%E4%BA%8ERange%E7%94%A8%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/" alt="微信分享二维码">
     </div>
 </div>
 
