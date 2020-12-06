@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>【Nmap】一、简介 | muqing的博客</title>
+  <title>【go】内存堆栈 | muqing的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Nmap是一款开源，免费的网络探测，安全审计工具。">
+  <meta name="description" content="​        首先需要明确，通常所说的内存堆栈和数据结构中的堆栈并不是一个概念。 ​">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Nmap】一、简介">
-<meta property="og:url" content="http://example.com/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:title" content="【go】内存堆栈">
+<meta property="og:url" content="http://example.com/2020/12/06/%E3%80%90go%E3%80%91%E5%86%85%E5%AD%98%E5%A0%86%E6%A0%88/index.html">
 <meta property="og:site_name" content="muqing的博客">
-<meta property="og:description" content="Nmap是一款开源，免费的网络探测，安全审计工具。">
+<meta property="og:description" content="​        首先需要明确，通常所说的内存堆栈和数据结构中的堆栈并不是一个概念。 ​">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-12-04T18:01:25.000Z">
-<meta property="article:modified_time" content="2020-12-05T15:27:37.801Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/muqing15/blogphotos/master/%E5%86%85%E5%AD%98%E5%A0%86%E6%A0%88/%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4.png">
+<meta property="article:published_time" content="2020-12-06T05:14:24.000Z">
+<meta property="article:modified_time" content="2020-12-06T06:10:24.740Z">
 <meta property="article:author" content="Mu Qing">
-<meta property="article:tag" content="Nmap">
+<meta property="article:tag" content="go">
+<meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/muqing15/blogphotos/master/%E5%86%85%E5%AD%98%E5%A0%86%E6%A0%88/%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4.png">
   
     <link rel="alternative" href="/atom.xml" title="muqing的博客" type="application/atom+xml">
   
@@ -153,60 +156,45 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-【Nmap】一、简介" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-【go】内存堆栈" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      【Nmap】一、简介
+      【go】内存堆栈
     </h1>
   
 
         
-        <a href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-  	<time datetime="2020-12-04T18:01:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-05</time>
+        <a href="/2020/12/06/%E3%80%90go%E3%80%91%E5%86%85%E5%AD%98%E5%A0%86%E6%A0%88/" class="archive-article-date">
+  	<time datetime="2020-12-06T05:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Nmap是一款开源，免费的网络探测，安全审计工具。</p>
-<a id="more"></a>
-<p>1、首先判断nmap输入的命令中是否包含域名，如果包含需要利用DNS服务器进行域名解析，然后发送ICMP Echo Request来探测主机存活性。</p>
-<p>2、如果主机存活，就会发送其他数据包发送给远程机器。</p>
-<p>3、远程机器根据数据包返回信息给主机。</p>
-<p>4、主机根据返回的数据包得到远程机器的信息。</p>
-<h2 id="1-1、绕过防火墙机制"><a href="#1-1、绕过防火墙机制" class="headerlink" title="1.1、绕过防火墙机制"></a>1.1、绕过防火墙机制</h2><p>对于已经知道IP的主机，可以使用-Pn指令禁止nmap发送ICMP请求，从而避免访问主机的防火墙机制</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -Pn scanme.nmap.org</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-2、列举端口"><a href="#1-2、列举端口" class="headerlink" title="1.2、列举端口"></a>1.2、列举端口</h2><p>对于默认的端口范围，并不能满足日常工作需要。可以使用<code>-p m-n</code>来指定探测端口范围为m-n之间的所有端口</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nmap -Pn scanme.nmap.org -p 1-1000</span><br><span class="line"></span><br><span class="line">//对特定端口进行扫描</span><br><span class="line">nmap -p$&#123;port&#125;,$&#123;port&#125;... $&#123;ip&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-3、指定DNS"><a href="#1-3、指定DNS" class="headerlink" title="1.3、指定DNS"></a>1.3、指定DNS</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap scanme.nmap.org --dns-servers $&#123;dns_address&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-4、识别服务指纹"><a href="#1-4、识别服务指纹" class="headerlink" title="1.4、识别服务指纹"></a>1.4、识别服务指纹</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV $&#123;IP&#125;</span><br><span class="line"></span><br><span class="line">// nmap侵略性的探测</span><br><span class="line">// -A表示使用侵略性的策略来识别</span><br><span class="line">// -v表示持续输出返回解析</span><br><span class="line">// -T4表示加快速度探测 范围为1-5</span><br><span class="line">namp -A -v -T4 $&#123;IP&#125;</span><br><span class="line"></span><br><span class="line">// sC表示使用Nmap脚本进行探测 equivalent to --script=default</span><br><span class="line">// sV表示探测目标机器上的服务信息</span><br><span class="line">// O表示探测目标机器的操作系统信息</span><br><span class="line">nmap -sC -sV -O $&#123;IP&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-5、主机发现"><a href="#1-5、主机发现" class="headerlink" title="1.5、主机发现"></a>1.5、主机发现</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nmap -sP 192.168.0.1/24</span><br><span class="line"></span><br><span class="line">nmap -sn CIDR</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-6、结果输出"><a href="#1-6、结果输出" class="headerlink" title="1.6、结果输出"></a>1.6、结果输出</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn CIDR -oX test.xml</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-7-指定协议"><a href="#1-7-指定协议" class="headerlink" title="1.7 指定协议"></a>1.7 指定协议</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p T:25,U:53 $&#123;ip&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-8-通过协议名扫描端口"><a href="#1-8-通过协议名扫描端口" class="headerlink" title="1.8 通过协议名扫描端口"></a>1.8 通过协议名扫描端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nmap -p ssh $&#123;IP&#125;</span><br><span class="line"></span><br><span class="line">// 扫描开头为s的协议</span><br><span class="line">nmap -p s* $&#123;IP&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="2、状态"><a href="#2、状态" class="headerlink" title="2、状态"></a>2、状态</h1><ul>
-<li>Open表示端口处于开放状态</li>
-<li>Closed</li>
-<li>Filterd</li>
-<li>UnFilterd</li>
-<li>Opend/UnFilterd</li>
-<li>Closed/UnFilterd</li>
+        <p>​        首先需要明确，通常所说的内存堆栈和数据结构中的堆栈并不是一个概念。</p>
+<p>​        <a id="more"></a></p>
+<p>​        我们知道，程序一般存放在ROM(只读内存)，在程序运行的时候，会将程序拷到RAM(随机存储器)中，同时，会在其中生成程序运行所需的常量，变量等信息。RAM存储的逻辑空间如下图所示(以C语言为例)：<br><img src="https://raw.githubusercontent.com/muqing15/blogphotos/master/%E5%86%85%E5%AD%98%E5%A0%86%E6%A0%88/%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4.png" alt="内存地址空间"></p>
+<h2 id="1、栈"><a href="#1、栈" class="headerlink" title="1、栈"></a>1、栈</h2><p>用于存放程序定义的局部变量，当需要存储新的变量时，从高位往地位扩展空间</p>
+<ul>
+<li>系统自动分配和回收栈空间</li>
+<li>在内存中连续存储，所以分配和读取速度较快</li>
+<li>空间较少，超出时会提示栈溢出</li>
+<li>一旦分配完成，不能更改所占用的内存大小</li>
 </ul>
+<h2 id="2、堆"><a href="#2、堆" class="headerlink" title="2、堆"></a>2、堆</h2><p>由程序员在程序中主动申请的内存空间，从低位往高位扩展空间</p>
+<ul>
+<li>由程序员主动申请内存空间，不使用时需要显式释放，或者程序退出时释放，如果使用完成不释放，容易导致内存泄露</li>
+<li>操作系统维护一个记录空闲内存地址的链表，当需要申请内存空间时，会从低地址到高地址遍历链表，找出大于申请内存的空间分配给程序使用，将分配后剩余的内存重新维护成一个新的空闲节点。存储空间不连续</li>
+<li>和栈相比，可分配的空间较大</li>
+<li>分配完成之后，还可以重新调节变量所占用的内存地址大小，所以堆更适合存储大小未知或者大小需要变化的变量</li>
+</ul>
+<h2 id="可读写区"><a href="#可读写区" class="headerlink" title="可读写区"></a>可读写区</h2><p>用于存放全局变量和静态变量，与上面两种分配内存的时间不同，可读写区在程序编译器就会为变量分配地址</p>
+<h2 id="只读区"><a href="#只读区" class="headerlink" title="只读区"></a>只读区</h2><p>用于存放程序和常量</p>
 
       
 
@@ -241,7 +229,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nmap</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">go</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
@@ -297,7 +289,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/06/%E3%80%90go%E3%80%91%E5%86%85%E5%AD%98%E5%A0%86%E6%A0%88/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -311,15 +303,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          【Nmap】二、6种端口状态
-        
-      </div>
-    </a>
   
+    <a href="/2020/12/06/%E3%80%90go%E3%80%91%E5%85%B3%E4%BA%8ERange%E7%94%A8%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【go】关于Range用法的一些感想</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -344,7 +332,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E7%BB%95%E8%BF%87%E9%98%B2%E7%81%AB%E5%A2%99%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">1.1、绕过防火墙机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81%E5%88%97%E4%B8%BE%E7%AB%AF%E5%8F%A3"><span class="toc-number">2.</span> <span class="toc-text">1.2、列举端口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E3%80%81%E6%8C%87%E5%AE%9ADNS"><span class="toc-number">3.</span> <span class="toc-text">1.3、指定DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4%E3%80%81%E8%AF%86%E5%88%AB%E6%9C%8D%E5%8A%A1%E6%8C%87%E7%BA%B9"><span class="toc-number">4.</span> <span class="toc-text">1.4、识别服务指纹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5%E3%80%81%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-number">5.</span> <span class="toc-text">1.5、主机发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6%E3%80%81%E7%BB%93%E6%9E%9C%E8%BE%93%E5%87%BA"><span class="toc-number">6.</span> <span class="toc-text">1.6、结果输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-%E6%8C%87%E5%AE%9A%E5%8D%8F%E8%AE%AE"><span class="toc-number">7.</span> <span class="toc-text">1.7 指定协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-8-%E9%80%9A%E8%BF%87%E5%8D%8F%E8%AE%AE%E5%90%8D%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3"><span class="toc-number">8.</span> <span class="toc-text">1.8 通过协议名扫描端口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E7%8A%B6%E6%80%81"><span class="toc-number"></span> <span class="toc-text">2、状态</span></a>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%A0%88"><span class="toc-number">1.</span> <span class="toc-text">1、栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%A0%86"><span class="toc-number">2.</span> <span class="toc-text">2、堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%AF%BB%E5%86%99%E5%8C%BA"><span class="toc-number">3.</span> <span class="toc-text">可读写区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AA%E8%AF%BB%E5%8C%BA"><span class="toc-number">4.</span> <span class="toc-text">只读区</span></a></li></ol>
                     </div>
                 </span>
             </div>
