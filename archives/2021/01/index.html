@@ -6,19 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>【Nmap】二、6种端口状态 | muqing的博客</title>
+  <title>Archives: 2021/1 | muqing的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、open(开放)应用程序正在使用该端口接受TCP或者UDP报文。状态为open的端口通常是扫描的主要目标。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="【Nmap】二、6种端口状态">
-<meta property="og:url" content="http://example.com/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/index.html">
+  <meta name="description" content="个人学习记录、分享">
+<meta property="og:type" content="website">
+<meta property="og:title" content="muqing的博客">
+<meta property="og:url" content="http://example.com/archives/2021/01/index.html">
 <meta property="og:site_name" content="muqing的博客">
-<meta property="og:description" content="1、open(开放)应用程序正在使用该端口接受TCP或者UDP报文。状态为open的端口通常是扫描的主要目标。">
+<meta property="og:description" content="个人学习记录、分享">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-12-04T18:38:57.000Z">
-<meta property="article:modified_time" content="2020-12-05T05:02:59.558Z">
 <meta property="article:author" content="Mu Qing">
-<meta property="article:tag" content="Nmap">
+<meta property="article:tag" content="记录、分享">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="muqing的博客" type="application/atom+xml">
@@ -153,205 +151,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-【Nmap】二、6种端口状态" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      【Nmap】二、6种端口状态
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/01/03/%E3%80%90ngxin%E3%80%91ngxin%E5%85%A5%E9%97%A8-md/" class="archive-article-date">
+  	<time datetime="2021-01-03T11:32:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-03</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/01/03/%E3%80%90ngxin%E3%80%91ngxin%E5%85%A5%E9%97%A8-md/">【ngxin】ngxin入门.md</a>
     </h1>
   
 
-        
-        <a href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/" class="archive-article-date">
-  	<time datetime="2020-12-04T18:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、open-开放"><a href="#1、open-开放" class="headerlink" title="1、open(开放)"></a>1、open(开放)</h2><p>应用程序正在使用该端口接受<code>TCP</code>或者<code>UDP</code>报文。状态为open的端口通常是扫描的主要目标。</p>
-<a id="more"></a>
-<h2 id="2、closed-关闭"><a href="#2、closed-关闭" class="headerlink" title="2、closed(关闭)"></a>2、closed(关闭)</h2><p>关闭的端口对于<code>Nmap</code>也是可访问的(它接受<code>Nmap</code>的探测报文并作出相应)，但是并没有应用程序在其上监听。但是它们可以显示探测<code>IP</code>地址上的主机是运行中的，并且对部分操作系统的探测也是有帮助的。</p>
-<p>如果从系统安全的角度考虑，应该考虑用防火墙封锁这些端口，使之变为<code>filtered</code>状态</p>
-<h2 id="3、filtered-被过滤的"><a href="#3、filtered-被过滤的" class="headerlink" title="3、filtered(被过滤的)"></a>3、filtered(被过滤的)</h2><p>由于包过滤阻止探测报文到达端口，<code>Nmap</code>无法确定该端口是否开放。<strong>这样的端口几乎不提供任何信息。</strong></p>
-<p>有时候它们相应<code>ICMP</code>错误信息如类型3代码13(无法到达目标：通信被管理员禁止)，但更普遍的是过滤器只是丢弃探测帧，不作任何相应。</p>
-<p>过滤可能来自：</p>
-<ul>
-<li>专业的防火墙设备</li>
-<li>路由器规则</li>
-<li>主机上的防火墙设置</li>
-</ul>
-<h2 id="4、unfiltered-未被过滤的"><a href="#4、unfiltered-未被过滤的" class="headerlink" title="4、unfiltered(未被过滤的)"></a>4、unfiltered(未被过滤的)</h2><p>未被过滤表示端口可访问，但是<code>Nmap</code>不确定它是关闭还是开放。只有用于映射防火墙规则集的ACK扫描才会把端口分类到这种状态。</p>
-<p>但可以用其他类型的扫描如窗口扫描，SYN扫描，或者FIN扫描来扫描未被过滤的端口可以帮助确定端口是否开放。</p>
-<h2 id="5、open-filtered-开放或者被过滤的"><a href="#5、open-filtered-开放或者被过滤的" class="headerlink" title="5、open|filtered(开放或者被过滤的)"></a>5、open|filtered(开放或者被过滤的)</h2><p>当无法确定端口是否开放还是被过滤的，就会把端口划分为这种状态。开放的端口不响应就是这种状态。</p>
-<p>没有相应可能意味着，报文过滤器丢弃了探测报文</p>
-<h2 id="6、closed-filtered-关闭或者被过滤的"><a href="#6、closed-filtered-关闭或者被过滤的" class="headerlink" title="6、closed|filtered(关闭或者被过滤的)"></a>6、closed|filtered(关闭或者被过滤的)</h2><p>该状态用于Nmap不能确定端口是关闭还是被过滤的。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>大可不必<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nmap</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/12/06/%E3%80%90go%E3%80%91%E5%85%B3%E4%BA%8ERange%E7%94%A8%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          【go】关于Range用法的一些感想
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【Nmap】一、简介</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81open-%E5%BC%80%E6%94%BE"><span class="toc-number">1.</span> <span class="toc-text">1、open(开放)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81closed-%E5%85%B3%E9%97%AD"><span class="toc-number">2.</span> <span class="toc-text">2、closed(关闭)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81filtered-%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84"><span class="toc-number">3.</span> <span class="toc-text">3、filtered(被过滤的)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81unfiltered-%E6%9C%AA%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84"><span class="toc-number">4.</span> <span class="toc-text">4、unfiltered(未被过滤的)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81open-filtered-%E5%BC%80%E6%94%BE%E6%88%96%E8%80%85%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84"><span class="toc-number">5.</span> <span class="toc-text">5、open|filtered(开放或者被过滤的)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81closed-filtered-%E5%85%B3%E9%97%AD%E6%88%96%E8%80%85%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84"><span class="toc-number">6.</span> <span class="toc-text">6、closed|filtered(关闭或者被过滤的)</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -379,8 +232,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>【Nmap】二、6种端口状态 | muqing的博客</title>
+  <title>【ngxin】ngxin入门.md | muqing的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、open(开放)应用程序正在使用该端口接受TCP或者UDP报文。状态为open的端口通常是扫描的主要目标。">
+  <meta name="description" content="the quieter you become,the more you are able to hear.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Nmap】二、6种端口状态">
-<meta property="og:url" content="http://example.com/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/index.html">
+<meta property="og:title" content="【ngxin】ngxin入门.md">
+<meta property="og:url" content="http://example.com/2021/01/03/%E3%80%90ngxin%E3%80%91ngxin%E5%85%A5%E9%97%A8-md/index.html">
 <meta property="og:site_name" content="muqing的博客">
-<meta property="og:description" content="1、open(开放)应用程序正在使用该端口接受TCP或者UDP报文。状态为open的端口通常是扫描的主要目标。">
+<meta property="og:description" content="the quieter you become,the more you are able to hear.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-12-04T18:38:57.000Z">
-<meta property="article:modified_time" content="2020-12-05T05:02:59.558Z">
+<meta property="article:published_time" content="2021-01-03T11:32:34.000Z">
+<meta property="article:modified_time" content="2021-01-03T12:25:00.054Z">
 <meta property="article:author" content="Mu Qing">
-<meta property="article:tag" content="Nmap">
+<meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="muqing的博客" type="application/atom+xml">
@@ -153,43 +153,96 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-【Nmap】二、6种端口状态" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-【ngxin】ngxin入门-md" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      【Nmap】二、6种端口状态
+      【ngxin】ngxin入门.md
     </h1>
   
 
         
-        <a href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/" class="archive-article-date">
-  	<time datetime="2020-12-04T18:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-05</time>
+        <a href="/2021/01/03/%E3%80%90ngxin%E3%80%91ngxin%E5%85%A5%E9%97%A8-md/" class="archive-article-date">
+  	<time datetime="2021-01-03T11:32:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、open-开放"><a href="#1、open-开放" class="headerlink" title="1、open(开放)"></a>1、open(开放)</h2><p>应用程序正在使用该端口接受<code>TCP</code>或者<code>UDP</code>报文。状态为open的端口通常是扫描的主要目标。</p>
+        <blockquote>
+<p>the quieter you become,the more you are able to hear.</p>
+</blockquote>
+<hr>
 <a id="more"></a>
-<h2 id="2、closed-关闭"><a href="#2、closed-关闭" class="headerlink" title="2、closed(关闭)"></a>2、closed(关闭)</h2><p>关闭的端口对于<code>Nmap</code>也是可访问的(它接受<code>Nmap</code>的探测报文并作出相应)，但是并没有应用程序在其上监听。但是它们可以显示探测<code>IP</code>地址上的主机是运行中的，并且对部分操作系统的探测也是有帮助的。</p>
-<p>如果从系统安全的角度考虑，应该考虑用防火墙封锁这些端口，使之变为<code>filtered</code>状态</p>
-<h2 id="3、filtered-被过滤的"><a href="#3、filtered-被过滤的" class="headerlink" title="3、filtered(被过滤的)"></a>3、filtered(被过滤的)</h2><p>由于包过滤阻止探测报文到达端口，<code>Nmap</code>无法确定该端口是否开放。<strong>这样的端口几乎不提供任何信息。</strong></p>
-<p>有时候它们相应<code>ICMP</code>错误信息如类型3代码13(无法到达目标：通信被管理员禁止)，但更普遍的是过滤器只是丢弃探测帧，不作任何相应。</p>
-<p>过滤可能来自：</p>
+<h1 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h1><blockquote>
+<p>Nginx(engine x)是一个高性能的http和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。<br>—-百度百科</p>
+</blockquote>
+<p>如上所说，nginx是一款针对性能优化而开发的优秀的软件，支持热部署，启动容器，且能够经受高负载的考验，能承受高达50000的并发访问。且能配合keepalived实现高可用。能提供如下主要功能：</p>
 <ul>
-<li>专业的防火墙设备</li>
-<li>路由器规则</li>
-<li>主机上的防火墙设置</li>
+<li>反向代理</li>
+<li>负载均衡</li>
+<li>动静分离</li>
 </ul>
-<h2 id="4、unfiltered-未被过滤的"><a href="#4、unfiltered-未被过滤的" class="headerlink" title="4、unfiltered(未被过滤的)"></a>4、unfiltered(未被过滤的)</h2><p>未被过滤表示端口可访问，但是<code>Nmap</code>不确定它是关闭还是开放。只有用于映射防火墙规则集的ACK扫描才会把端口分类到这种状态。</p>
-<p>但可以用其他类型的扫描如窗口扫描，SYN扫描，或者FIN扫描来扫描未被过滤的端口可以帮助确定端口是否开放。</p>
-<h2 id="5、open-filtered-开放或者被过滤的"><a href="#5、open-filtered-开放或者被过滤的" class="headerlink" title="5、open|filtered(开放或者被过滤的)"></a>5、open|filtered(开放或者被过滤的)</h2><p>当无法确定端口是否开放还是被过滤的，就会把端口划分为这种状态。开放的端口不响应就是这种状态。</p>
-<p>没有相应可能意味着，报文过滤器丢弃了探测报文</p>
-<h2 id="6、closed-filtered-关闭或者被过滤的"><a href="#6、closed-filtered-关闭或者被过滤的" class="headerlink" title="6、closed|filtered(关闭或者被过滤的)"></a>6、closed|filtered(关闭或者被过滤的)</h2><p>该状态用于Nmap不能确定端口是关闭还是被过滤的。</p>
+<hr>
+<h1 id="2、nginx常用命令"><a href="#2、nginx常用命令" class="headerlink" title="2、nginx常用命令"></a>2、nginx常用命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">使用nginx命令需要进入nginx目录中</span><br><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line"><span class="meta">#</span><span class="bash"> 1、查看nginx版本</span></span><br><span class="line">./nginx -v</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2、启动、关闭nginx</span></span><br><span class="line">./nginx</span><br><span class="line">./nginx -s stop</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 3、重新加载nginx</span></span><br><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="3、nginx配置文件"><a href="#3、nginx配置文件" class="headerlink" title="3、nginx配置文件"></a>3、nginx配置文件</h1><p><code>nginx</code>配置文件位置：<code>/usr/local/nginx/conf/nginx.conf</code></p>
+<p><strong>配置文件组成:</strong></p>
+<ul>
+<li>全局块<br>从配置文件到event块之间的配置，主要影响nginx.conf全局配置<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">worker_processes</span> <span class="number">1</span><span class="string">;</span>   <span class="comment"># 并发数量</span></span><br></pre></td></tr></table></figure></li>
+<li>event块<br>主要影响Nginx服务其与用户的网络连接<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">events&#123;</span></span><br><span class="line">    <span class="string">worker_connections</span> <span class="number">1024</span><span class="string">;</span>    <span class="comment"># 最大连接数</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li>http块<br>配置最频繁的部分，代理，缓存和日志等级设置等<ul>
+<li>http全局快<br>http全局块配置的指令包括文件引入，MIME-TYPE定义，日志自定义，连接超时时间，单连接请求数上限等。</li>
+<li>server块<br>与虚拟主机有关<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">server</span> &#123;</span><br><span class="line">    <span class="string">listen</span> <span class="number">80</span>    <span class="comment"># 监听80端口</span></span><br><span class="line">    <span class="string">server_name</span>   <span class="string">localhost</span>  <span class="comment"># 主机名称</span></span><br><span class="line">    <span class="string">localtion</span> <span class="string">/</span> &#123;</span><br><span class="line">        <span class="string">root</span>   <span class="string">html;</span></span><br><span class="line">        <span class="string">index</span>  <span class="string">index.html</span> <span class="string">index.htm</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意:</strong><br>如果启动nginx之后，不能通过主机ip访问，可能是由于防火墙的原因，在防火墙上添加放开80端口的规则即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1、查看防火墙规则</span></span><br><span class="line">firewall-cmd --list-all</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2、添加端口</span></span><br><span class="line">firewall-cmd --add-port=80/tcp --permanent</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 3、重启防火墙</span></span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="4、反向代理"><a href="#4、反向代理" class="headerlink" title="4、反向代理"></a>4、反向代理</h1><h2 id="4-1、实例一"><a href="#4-1、实例一" class="headerlink" title="4.1、实例一"></a>4.1、实例一</h2><p><strong>达到效果</strong><br>1、打开浏览器，在浏览器地址栏输入地址<code>www.123.com</code>，跳转到linux中tomcat主页<br>2、准备工作<br>2.1、 在linux中安装tomcat，使用默认端口号8080<br>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 8080:8080 --name tomcat tomcat</span><br></pre></td></tr></table></figure><br>2.2、 配置windows的hosts文件，添加<code>www.123.com</code>的dns解析<br>2.3、 配置nginx.conf<br>   <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">local</span> <span class="string">/</span> &#123;</span><br><span class="line">    <span class="string">root</span>  <span class="string">html;</span>        <span class="comment"># 如果没有路径，默认访问ROOT路径</span></span><br><span class="line">    <span class="string">proxy_pass</span> <span class="string">http://localhost:8080;</span></span><br><span class="line">    <span class="string">index</span>  <span class="string">index.html</span> <span class="string">index.htm;</span>    <span class="comment"># 如果没有指定index页面，自动寻找index.html或者index.htm</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-2、实例二"><a href="#4-2、实例二" class="headerlink" title="4.2、实例二"></a>4.2、实例二</h2><p><strong>达到效果</strong><br>1、访问<code>www.123.com/edu/</code>，跳转到127.0.0.1:8080<br>   访问<code>www.123.com/vod/</code>，跳转到127.0.0.1:8081<br>2、准备工作<br>2.1、 启动两个tomcat容器。<br>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1、启动第一个容器</span></span><br><span class="line">docker run -d -p 8080:8080 --name tomcat tomcat</span><br><span class="line">docker exec -it tomcat sh </span><br><span class="line">cd webapps</span><br><span class="line">mkdir edu</span><br><span class="line">cd edu </span><br><span class="line">echo &quot;&lt;h1&gt;welcome to 8080&lt;/h1&gt;&quot; &gt; index.html</span><br><span class="line">exit  </span><br><span class="line"><span class="meta">#</span><span class="bash"> 2、启动第二个容器</span></span><br><span class="line">docker run -d -p 8080:8080 --name tomcat2 tomcat</span><br><span class="line">docker exec -it tomcat sh </span><br><span class="line">cd webapps</span><br><span class="line">mkdir vod</span><br><span class="line">cd vod </span><br><span class="line">echo &quot;&lt;h1&gt;welcome to 8081&lt;/h1&gt;&quot; &gt; index.html</span><br></pre></td></tr></table></figure><br>2.2、 配置nginx.conf<br>   <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">server</span> &#123;</span><br><span class="line">    <span class="string">listen</span> <span class="number">9001</span><span class="string">;</span></span><br><span class="line">    <span class="string">server_name</span> <span class="string">localhost;</span></span><br><span class="line">    </span><br><span class="line">    <span class="string">location</span> <span class="string">~</span> <span class="string">/edu/</span> &#123;</span><br><span class="line">        <span class="string">proxy_pass</span>  <span class="string">http://localhost:8080;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="string">location</span> <span class="string">~</span> <span class="string">/vod/</span> &#123;</span><br><span class="line">        <span class="string">proxy_pass</span>  <span class="string">http://localhost:8081;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>2.3、 浏览器访问<code>http://192.168.31.48:9001/edu/</code> 和 <code>http://192.168.31.48:9001/vod/</code><br>   当nginx收到<code>http://192.168.31.48:9001/edu/</code>的请求时，查到应该转发给 <code>http://localhost:8080</code>，并不是直接请求localhost:8080的数据，而是要加上/edu/在进行请求，所以实际请求到tomcat的是localhost:8080/edu/，所以需要在tomcat的webapps文件夹中创建对应的路径，并在其中放置index.html文件</p>
+<ul>
+<li><code>=</code> 用于不含正则表达式的uri前，要求请求字符串与uri严格匹配，如果匹配成功，就停止继续向下搜索并立即处理该请求。</li>
+<li><code>~</code> 用于表示uri含正则表达式，并且区分大小写</li>
+<li><code>~*</code> 用于表示uri包含正则表达式，并且不区分大小写</li>
+<li><code>^~</code> 用于不含正则表达式的uri前，要求nginx服务器找到标志uri和请求字符串匹配度最高的location后，立即使用此location处理请求，不再使用location块中的正则uri和请求字符串做匹配。</li>
+</ul>
+<hr>
+<h1 id="5、负载均衡"><a href="#5、负载均衡" class="headerlink" title="5、负载均衡"></a>5、负载均衡</h1><p><strong>实现效果</strong><br>1、浏览器地址栏输入地址<code>http://xxx.xxx.xxx.xxx/edu/a.html</code>，负载均衡效果，平均到8080和8081端口中<br><strong>准备工作</strong><br>1、准备两台tomcat服务器<br>2、在两台tomcat服务器的webapps目录中，创建名称是edu的文件夹，并配上index.html目录<br>3、配置nginx.conf，在http块中添加</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、添加upstream</span></span><br><span class="line"><span class="string">upstream</span> <span class="string">$&#123;upstreamName&#125;</span> &#123;</span><br><span class="line">    <span class="string">server</span>  <span class="string">localhost:8080;</span></span><br><span class="line">    <span class="string">server</span>  <span class="string">localhost:8081;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">server</span> &#123;</span><br><span class="line">    <span class="string">listen</span> <span class="number">80</span><span class="string">;</span></span><br><span class="line">    <span class="string">server_name</span>  <span class="string">localhost;</span></span><br><span class="line"></span><br><span class="line">    <span class="string">location</span> <span class="string">/</span> &#123;</span><br><span class="line">    	<span class="string">ROOT</span> <span class="string">html;</span></span><br><span class="line">    	<span class="string">proxy_pass</span> <span class="string">http://$</span>&#123;<span class="string">upstreamName</span>&#125;<span class="string">;</span></span><br><span class="line">    	<span class="string">index</span> <span class="string">index.html</span> <span class="string">index.htm;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>分配策略：</p>
+<ul>
+<li>轮询(默认)<br>每个请求按时间平均分配到不同的后端服务器，如果一个后端服务器down掉，自动剔除</li>
+<li>权重 weight<br>指定轮询机率，weight和访问率成正比，用于后端服务器性能不均的情况<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">upstream</span> <span class="string">$&#123;upstreamName&#125;</span> &#123;</span><br><span class="line">    <span class="string">sever</span>  <span class="string">localhost:8080</span> <span class="string">weight:5;</span></span><br><span class="line">    <span class="string">server</span> <span class="string">localhost:8081</span> <span class="string">weight:10;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>ip_hash<br>根据ip的hash结果分配，这样每个访客都会固定访问一个后端服务器，可以解决session问题<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">upstream</span> <span class="string">$&#123;upstreamName&#125;</span> &#123;</span><br><span class="line">    <span class="string">ip_hash;</span></span><br><span class="line">    <span class="string">server</span> <span class="string">localhost:8080;</span></span><br><span class="line">    <span class="string">server</span> <span class="string">localhost:8081;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>fair<br>按后端服务器的响应时间分配，响应时间越短，就越优先分配<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">upstream</span> <span class="string">$&#123;upstreamName&#125;</span> &#123;</span><br><span class="line">    <span class="string">fair;</span></span><br><span class="line">    <span class="string">server</span> <span class="string">localhost:8080;</span></span><br><span class="line">    <span class="string">server</span> <span class="string">localhost:8081;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h1 id="6、动静分离"><a href="#6、动静分离" class="headerlink" title="6、动静分离"></a>6、动静分离</h1><p>  动静分离严格意思上说是把动态请求和静态请求分开，目前大致有两种实现方案：</p>
+<ul>
+<li>纯粹把动态和镜像页面独立成单独的域名，放在独立的服务器上，也是目前主流推崇的方案</li>
+<li>动态和静态页面一起发布，通过nginx来分开</li>
+<li>*准备工作**<br>1、准备静态资源<br>2、配置nginx.conf<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">server</span> &#123;</span><br><span class="line">	<span class="string">listen</span> <span class="number">80</span><span class="string">;</span></span><br><span class="line">	<span class="string">server_name</span> <span class="string">localhost;</span>  <span class="comment">#放置静态资源的机器</span></span><br><span class="line">	</span><br><span class="line">    <span class="string">location</span> <span class="string">/www/</span> &#123;</span><br><span class="line">	    <span class="string">root</span>  <span class="string">$</span>&#123;<span class="string">path</span>&#125;<span class="string">;</span>      <span class="comment">#机器中静态资源的路径</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="string">location</span> <span class="string">/image/</span> &#123;</span><br><span class="line">    	<span class="string">root</span> <span class="string">$</span>&#123;<span class="string">path</span>&#125;<span class="string">;</span></span><br><span class="line">    	<span class="string">autoindex</span> <span class="string">on;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="7、nginx高可用"><a href="#7、nginx高可用" class="headerlink" title="7、nginx高可用"></a>7、nginx高可用</h1><p><strong>问题：</strong><br>1、当nginx宕机，请求无法达到后端服务器<br><strong>解决方法</strong>：<br>1、准备两台nginx服务器，一台主服务器MASTER，一台备份服务器BACKUP，需要使用到<strong>keepalived</strong><br>keepalived提供一个虚拟ip，将这个虚拟ip绑定到两台nginx的ip上，同时检测两台nginx服务器的存活状态，如果一台nginx服务器宕机，就将虚拟ip绑定到另一台nignx服务器上。<br>配置高可用的准备工作<br>1、两台虚机环境安装nginx<br>2、两台虚机环境安装keepalived<br>3、配置文件/etc/keepalived/keepalived.conf</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">!</span> <span class="string">Configuration</span> <span class="string">File</span> <span class="string">for</span> <span class="string">keepalived</span></span><br><span class="line"></span><br><span class="line"><span class="string">global_defs</span> &#123;</span><br><span class="line">   <span class="string">notification_email</span> &#123;</span><br><span class="line">     <span class="string">acassen@firewall.loc</span></span><br><span class="line">     <span class="string">failover@firewall.loc</span></span><br><span class="line">     <span class="string">sysadmin@firewall.loc</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="string">notification_email_from</span> <span class="string">Alexandre.Cassen@firewall.loc</span></span><br><span class="line">   <span class="string">smtp_server</span> <span class="number">192.168</span><span class="number">.31</span><span class="number">.48</span>                 <span class="comment"># nginx主机地址</span></span><br><span class="line">   <span class="string">smtp_connect_timeout</span> <span class="number">30</span></span><br><span class="line">   <span class="string">router_id</span> <span class="string">LVS_DEVEL</span>                       <span class="comment"># 主机地址</span></span><br><span class="line">   <span class="string">vrrp_skip_check_adv_addr</span></span><br><span class="line">   <span class="string">vrrp_strict</span></span><br><span class="line">   <span class="string">vrrp_garp_interval</span> <span class="number">0</span></span><br><span class="line">   <span class="string">vrrp_gna_interval</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">vrrp_script</span> <span class="string">nginx_check</span> &#123;</span><br><span class="line">    <span class="string">script</span> <span class="string">&quot;/etc/keepalived/nginx_check.sh&quot;</span>   <span class="comment"># 检测脚本位置</span></span><br><span class="line">    <span class="string">interval</span> <span class="number">2</span></span><br><span class="line">    <span class="string">weight</span> <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">vrrp_instance</span> <span class="string">VI_1</span> &#123;</span><br><span class="line">    <span class="string">state</span> <span class="string">MASTER</span>                  <span class="comment"># 主节点用MASTER 从节点用BACKUP</span></span><br><span class="line">    <span class="string">interface</span> <span class="string">ens33</span>               <span class="comment"># 网卡名</span></span><br><span class="line">    <span class="string">virtual_router_id</span> <span class="number">51</span>          <span class="comment"># 虚拟路由id，两台虚机这个id必须一致</span></span><br><span class="line">    <span class="string">priority</span> <span class="number">100</span></span><br><span class="line">    <span class="string">nopreempt</span>                     <span class="comment"># 优先级高的设置nopreempt 解决异常恢复后再次抢占的问题</span></span><br><span class="line">    <span class="string">advert_int</span> <span class="number">1</span>                  <span class="comment"># 发送心跳检测间隔</span></span><br><span class="line">    <span class="string">authentication</span> &#123;</span><br><span class="line">        <span class="string">auth_type</span> <span class="string">PASS</span></span><br><span class="line">        <span class="string">auth_pass</span> <span class="number">1111</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">track_script</span> &#123;                 <span class="comment"># 检测脚本</span></span><br><span class="line">        <span class="string">nginx_check</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">virtual_ipaddress</span> &#123;</span><br><span class="line">        <span class="number">192.168</span><span class="number">.31</span><span class="number">.21</span>              <span class="comment"># 虚拟ip地址</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、监控脚本<br>/etc/keepalived/nginx_check.sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line">A = `ps -C nginx --no-header | wc -l`</span><br><span class="line">echo &quot;check nginx is alived&quot; &gt; /var/log/keepalived.log</span><br><span class="line">if [ $A -eq 0 ]; then</span><br><span class="line">    echo &quot;ps -C nginx = 0, goto stop keepalived&quot; &gt; /var/log/keeplived.log</span><br><span class="line">    systemctl stop keepalived</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="8、目前还存在的问题"><a href="#8、目前还存在的问题" class="headerlink" title="8、目前还存在的问题"></a>8、目前还存在的问题</h1><p>1、按照如上方式配置了keepalived，然后手动停止nginx，keepalived并没有自动停止，且访问虚拟ip的流量并没有切换到备份nginx主机上，待解决…<br>2、上面所述仅为nginx的简单用法，尚未涉及<strong>复杂场景</strong>及<strong>Nginx原理分析</strong>，希望以后有时间能够作一些这方面的补充。</p>
+<hr>
+<p><strong>参考</strong><br>1、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zJ411w7SV?p=1">尚硅谷Nginx教程(视频)</a><br>2、<a target="_blank" rel="noopener" href="https://blog.csdn.net/wangjx92/article/details/79854616">【环境问题】解决nginx进程和keepalived不同时存在问题</a><br>3、<a target="_blank" rel="noopener" href="https://blog.csdn.net/lijian12388806/article/details/51882333?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control">keepalived + nginx 实现高可用集群方案</a><br>4、<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44790046/article/details/106857369">docker搭建nginx主备模式反向代理Nacos集群加mysql主从复制</a></p>
 
       
 
@@ -224,7 +277,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nmap</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
         		</li>
       		
 		</ul>
@@ -280,7 +333,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%BA%8C%E3%80%816%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/03/%E3%80%90ngxin%E3%80%91ngxin%E5%85%A5%E9%97%A8-md/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +347,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/12/06/%E3%80%90go%E3%80%91%E5%85%B3%E4%BA%8ERange%E7%94%A8%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          【go】关于Range用法的一些感想
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/12/05/%E3%80%90Nmap%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【Nmap】一、简介</div>
+    <a href="/2020/12/06/%E3%80%90go%E3%80%91%E5%86%85%E5%AD%98%E5%A0%86%E6%A0%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【go】内存堆栈</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -332,7 +376,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81open-%E5%BC%80%E6%94%BE"><span class="toc-number">1.</span> <span class="toc-text">1、open(开放)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81closed-%E5%85%B3%E9%97%AD"><span class="toc-number">2.</span> <span class="toc-text">2、closed(关闭)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81filtered-%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84"><span class="toc-number">3.</span> <span class="toc-text">3、filtered(被过滤的)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81unfiltered-%E6%9C%AA%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84"><span class="toc-number">4.</span> <span class="toc-text">4、unfiltered(未被过滤的)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81open-filtered-%E5%BC%80%E6%94%BE%E6%88%96%E8%80%85%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84"><span class="toc-number">5.</span> <span class="toc-text">5、open|filtered(开放或者被过滤的)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81closed-filtered-%E5%85%B3%E9%97%AD%E6%88%96%E8%80%85%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84"><span class="toc-number">6.</span> <span class="toc-text">6、closed|filtered(关闭或者被过滤的)</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">1、简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">2、nginx常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">3、nginx配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">4、反向代理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81%E5%AE%9E%E4%BE%8B%E4%B8%80"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、实例一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81%E5%AE%9E%E4%BE%8B%E4%BA%8C"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、实例二</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">5.</span> <span class="toc-text">5、负载均衡</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB"><span class="toc-number">6.</span> <span class="toc-text">6、动静分离</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81nginx%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-number">7.</span> <span class="toc-text">7、nginx高可用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81%E7%9B%AE%E5%89%8D%E8%BF%98%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">8、目前还存在的问题</span></a></li></ol>
                     </div>
                 </span>
             </div>
