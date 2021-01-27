@@ -16,7 +16,7 @@
 <meta property="og:description" content="For every complex problem there is an answer that is clear , simple , and wrong.—-H.L.Mencken">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-05T16:14:53.000Z">
-<meta property="article:modified_time" content="2021-01-25T13:42:49.391Z">
+<meta property="article:modified_time" content="2021-01-27T12:18:04.667Z">
 <meta property="article:author" content="Mu Qing">
 <meta property="article:tag" content="go">
 <meta property="article:tag" content="随笔">
@@ -178,6 +178,7 @@
 <p>For every complex problem there is an answer that is clear , simple , and wrong.<br>—-H.L.Mencken</p>
 </blockquote>
 <a id="more"></a>
+
 <hr>
 <p>&emsp;&emsp;今天在复习管道的用法时，想实现两个协程，一个协程负责向管道中写入10个数字，另一个协程负责从管道中读出这10个数字，就是下面这个程序。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	wg.Add(<span class="number">2</span>)</span><br><span class="line">	ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span> , <span class="number">10</span>)</span><br><span class="line">	<span class="keyword">go</span> SetChan(ch)</span><br><span class="line">	<span class="keyword">go</span> LoadChan(ch)</span><br><span class="line">	wg.Wait()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写入数值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SetChan</span><span class="params">(ch <span class="keyword">chan</span> &lt;- <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span> ; i &lt; <span class="number">10</span> ; i++&#123;</span><br><span class="line">		ch &lt;- i</span><br><span class="line">	&#125;</span><br><span class="line">        <span class="built_in">close</span>(ch)</span><br><span class="line">	<span class="keyword">defer</span> wg.Done()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 负责从ch中读取数值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LoadChan</span><span class="params">(ch &lt;- <span class="keyword">chan</span> <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> v := <span class="keyword">range</span> ch &#123;</span><br><span class="line">		fmt.Println(v)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> wg.Done()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// all goroutines are asleep - deadlock!</span></span><br></pre></td></tr></table></figure>
@@ -453,6 +454,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">go</a>
               </li>
              
@@ -461,15 +466,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网穿透</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
             
             <div class="clearfix"></div>

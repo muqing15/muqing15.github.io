@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>【内网穿透二】访问局域网所有主机 | muqing的博客</title>
+  <title>【docker】一、简介 | muqing的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Nothing can help us endure dark times better than our faith.">
+  <meta name="description" content="when it is dark enough ,we can see the stars.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【内网穿透二】访问局域网所有主机">
-<meta property="og:url" content="http://example.com/2021/01/25/%E3%80%90%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BA%8C%E3%80%91%E8%AE%BF%E9%97%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%80%E6%9C%89%E4%B8%BB%E6%9C%BA/index.html">
+<meta property="og:title" content="【docker】一、简介">
+<meta property="og:url" content="http://example.com/2021/01/26/%E3%80%90docker%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="muqing的博客">
-<meta property="og:description" content="Nothing can help us endure dark times better than our faith.">
+<meta property="og:description" content="when it is dark enough ,we can see the stars.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-25T13:03:44.000Z">
-<meta property="article:modified_time" content="2021-01-27T12:14:09.602Z">
+<meta property="article:published_time" content="2021-01-26T13:29:48.000Z">
+<meta property="article:modified_time" content="2021-01-26T14:36:51.619Z">
 <meta property="article:author" content="Mu Qing">
-<meta property="article:tag" content="内网穿透">
-<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="muqing的博客" type="application/atom+xml">
@@ -154,20 +153,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-【内网穿透二】访问局域网所有主机" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-【docker】一、简介" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      【内网穿透二】访问局域网所有主机
+      【docker】一、简介
     </h1>
   
 
         
-        <a href="/2021/01/25/%E3%80%90%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BA%8C%E3%80%91%E8%AE%BF%E9%97%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%80%E6%9C%89%E4%B8%BB%E6%9C%BA/" class="archive-article-date">
-  	<time datetime="2021-01-25T13:03:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-25</time>
+        <a href="/2021/01/26/%E3%80%90docker%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+  	<time datetime="2021-01-26T13:29:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-26</time>
 </a>
         
       </header>
@@ -175,20 +174,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>Nothing can help us endure dark times better than our faith. </p>
+<p>when it is dark enough ,we can see the stars.</p>
 </blockquote>
 <a id="more"></a>
 
-<hr>
-<p>[toc]</p>
-<p>上篇<a target="_blank" rel="noopener" href="https://muqing15.github.io/2021/01/19/[%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F]%E4%B8%80%E3%80%81%E5%80%9F%E5%8A%A9ECS%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">《【内网穿透一】借助公网主机实现内网穿透》</a>只是解决了通过内网穿透访问一台主机的问题，但是并没有解决文章中涉及到的两个问题：</p>
-<ul>
-<li>与被访问主机同一局域网的主机怎么也能被访问</li>
-<li>多个局域网借助一台主机实现内网穿透</li>
-</ul>
-<p>所以这篇文章将主要介绍如何借助一台公网主机访问多个局域网内的主机，以及将frp运行到后台，或者使用systemctl管理frp服务。</p>
-<hr>
-<h1 id="1、访问多台局域网主机"><a href="#1、访问多台局域网主机" class="headerlink" title="1、访问多台局域网主机"></a>1、访问多台局域网主机</h1><h2 id="1-1、同一个局域网"><a href="#1-1、同一个局域网" class="headerlink" title="1.1、同一个局域网"></a>1.1、同一个局域网</h2><h2 id="1-2、多个局域网"><a href="#1-2、多个局域网" class="headerlink" title="1.2、多个局域网"></a>1.2、多个局域网</h2><h1 id="2、frp后台运行"><a href="#2、frp后台运行" class="headerlink" title="2、frp后台运行"></a>2、frp后台运行</h1>
+<p>我第一次接触到的虚拟化技术应该算是操作系统课上接触到的vmware，当时觉得这个技术很神奇，居然能在主机里再安装一个虚机。但是由于是将</p>
+
       
 
       
@@ -222,11 +213,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">内网穿透</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
         		</li>
       		
 		</ul>
@@ -282,7 +269,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/25/%E3%80%90%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BA%8C%E3%80%91%E8%AE%BF%E9%97%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%80%E6%9C%89%E4%B8%BB%E6%9C%BA/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/26/%E3%80%90docker%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -296,18 +283,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/01/26/%E3%80%90docker%E3%80%91%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          【docker】一、简介
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/01/19/%E3%80%90%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E3%80%91%E4%B8%80%E3%80%81%E5%80%9F%E5%8A%A9ECS%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【内网穿透一】借助公网主机实现内网穿透</div>
+    <a href="/2021/01/25/%E3%80%90%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BA%8C%E3%80%91%E8%AE%BF%E9%97%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%80%E6%9C%89%E4%B8%BB%E6%9C%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【内网穿透二】访问局域网所有主机</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -334,7 +312,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E8%AE%BF%E9%97%AE%E5%A4%9A%E5%8F%B0%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%BB%E6%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">1、访问多台局域网主机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E5%90%8C%E4%B8%80%E4%B8%AA%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、同一个局域网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81%E5%A4%9A%E4%B8%AA%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、多个局域网</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81frp%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C"><span class="toc-number">2.</span> <span class="toc-text">2、frp后台运行</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
