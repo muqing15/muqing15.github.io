@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/muqing15/blogphotos/master/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/Intranet%20penetration2.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/muqing15/blogphotos/master/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/test.png">
 <meta property="article:published_time" content="2021-01-18T17:57:18.000Z">
-<meta property="article:modified_time" content="2021-01-27T12:14:06.316Z">
+<meta property="article:modified_time" content="2021-01-27T12:21:56.640Z">
 <meta property="article:author" content="Mu Qing">
 <meta property="article:tag" content="内网穿透">
 <meta property="article:tag" content="计算机网络">
@@ -184,7 +184,6 @@
 <a id="more"></a>
 
 <hr>
-<p>[toc]</p>
 <p>众所周知，由于ipv4设计时的考虑不周，导致现有的ipv4公网地址已经被全部用光。目前最常用的解决方案是运营商几乎不向个人提供公网地址，而是给用户统一分配运营商提供的内网地址。</p>
 <p>这种情况就造成，正常情况下很难通过ip访问位于其他局域网内的主机。于是，内网穿透(同时也称为NAT穿透)就被派上了大用场。由于局域网的主机可以访问公网ip或主机，所以可以在公网主机和内网主机之间通过端口映射建立连接，当访问公网Ip的某个端口时，访问的端口就被映射到内网的某个端口上。从宏观上看，就可以通过公网Ip穿过内网的限制而访问到内网的主机。</p>
 <p>目前内网穿透的技术多种，这篇文章主要介绍通过公网主机做端口映射的方法实现内网穿透。</p>

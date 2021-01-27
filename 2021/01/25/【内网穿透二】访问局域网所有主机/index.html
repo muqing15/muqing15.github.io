@@ -15,12 +15,15 @@
 <meta property="og:site_name" content="muqing的博客">
 <meta property="og:description" content="Nothing can help us endure dark times better than our faith.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/muqing15/blogphotos/master/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/Intranet%20penetration.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/muqing15/blogphotos/master/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/%E9%AA%8C%E8%AF%81%E8%BF%9E%E6%8E%A5pc4.png">
 <meta property="article:published_time" content="2021-01-25T13:03:44.000Z">
-<meta property="article:modified_time" content="2021-01-27T12:14:09.602Z">
+<meta property="article:modified_time" content="2021-01-27T14:59:05.476Z">
 <meta property="article:author" content="Mu Qing">
 <meta property="article:tag" content="内网穿透">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/muqing15/blogphotos/master/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/Intranet%20penetration.png">
   
     <link rel="alternative" href="/atom.xml" title="muqing的博客" type="application/atom+xml">
   
@@ -178,17 +181,28 @@
 <p>Nothing can help us endure dark times better than our faith. </p>
 </blockquote>
 <a id="more"></a>
-
 <hr>
-<p>[toc]</p>
 <p>上篇<a target="_blank" rel="noopener" href="https://muqing15.github.io/2021/01/19/[%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F]%E4%B8%80%E3%80%81%E5%80%9F%E5%8A%A9ECS%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">《【内网穿透一】借助公网主机实现内网穿透》</a>只是解决了通过内网穿透访问一台主机的问题，但是并没有解决文章中涉及到的两个问题：</p>
 <ul>
 <li>与被访问主机同一局域网的主机怎么也能被访问</li>
 <li>多个局域网借助一台主机实现内网穿透</li>
 </ul>
-<p>所以这篇文章将主要介绍如何借助一台公网主机访问多个局域网内的主机，以及将frp运行到后台，或者使用systemctl管理frp服务。</p>
 <hr>
-<h1 id="1、访问多台局域网主机"><a href="#1、访问多台局域网主机" class="headerlink" title="1、访问多台局域网主机"></a>1、访问多台局域网主机</h1><h2 id="1-1、同一个局域网"><a href="#1-1、同一个局域网" class="headerlink" title="1.1、同一个局域网"></a>1.1、同一个局域网</h2><h2 id="1-2、多个局域网"><a href="#1-2、多个局域网" class="headerlink" title="1.2、多个局域网"></a>1.2、多个局域网</h2><h1 id="2、frp后台运行"><a href="#2、frp后台运行" class="headerlink" title="2、frp后台运行"></a>2、frp后台运行</h1>
+<h1 id="1、访问多台局域网主机"><a href="#1、访问多台局域网主机" class="headerlink" title="1、访问多台局域网主机"></a>1、访问多台局域网主机</h1><h2 id="1-1、同一个局域网"><a href="#1-1、同一个局域网" class="headerlink" title="1.1、同一个局域网"></a>1.1、同一个局域网</h2><p><img src="https://raw.githubusercontent.com/muqing15/blogphotos/master/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/Intranet%20penetration.png"><br>还以这个图中的几台虚机为例：<br>在<a target="_blank" rel="noopener" href="https://muqing15.github.io/2021/01/19/[%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F]%E4%B8%80%E3%80%81%E5%80%9F%E5%8A%A9ECS%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">《【内网穿透一】借助公网主机实现内网穿透》</a>中解析了如何通过访问PC3，现在主要讲解一下在此基础上，实现从公网访问PC4的配置。访问与PC3在同一局域网下的主机，无需再在这些主机上安装frp服务了，只需要配置PC3的frp配置，将PC3作为公网访问PC4的转发节点。<br>1.修改PC3中的<code>/usr/local/frp/frpc.ini</code>配置文件<br>2.在配置文件中添加转发到PC4的相关配置<br>   <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">common</span>]</span><br><span class="line"><span class="string">server_addr</span> <span class="string">=</span> <span class="number">160.73</span><span class="number">.28</span><span class="number">.19</span></span><br><span class="line"><span class="string">server_port</span> <span class="string">=</span> <span class="number">7000</span></span><br><span class="line"><span class="string">token=password2021</span></span><br><span class="line"></span><br><span class="line">[<span class="string">PC3</span>]</span><br><span class="line"><span class="string">type</span> <span class="string">=</span> <span class="string">tcp</span></span><br><span class="line"><span class="string">local_ip</span> <span class="string">=</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line"><span class="string">local_port</span> <span class="string">=</span> <span class="number">22</span></span><br><span class="line"><span class="string">remote_port</span> <span class="string">=</span> <span class="number">6000</span> </span><br><span class="line"><span class="comment"># ------以上是之前frpc.ini中的配置-------</span></span><br><span class="line">[<span class="string">PC4</span>]                        <span class="comment"># frp中注册的主机名称，一定不能与其他主机重复!!!</span></span><br><span class="line"><span class="string">type</span> <span class="string">=</span> <span class="string">tcp</span></span><br><span class="line"><span class="string">local_ip</span> <span class="string">=</span> <span class="number">192.168</span><span class="number">.33</span><span class="number">.48</span>     <span class="comment"># 局域网中PC4的ip</span></span><br><span class="line"><span class="string">local_port</span> <span class="string">=</span> <span class="number">22</span></span><br><span class="line"><span class="string">remote_port</span> <span class="string">=</span> <span class="number">6001</span>           <span class="comment"># ECS上的端口号</span></span><br></pre></td></tr></table></figure><br>3.重启frp<br>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/frp</span><br><span class="line">./frpc      # 一定要先保证公网主机中的frp服务端已经开启</span><br></pre></td></tr></table></figure><br>4.验证<br>   使用<code>ssh -oPort=6001 root@ECS</code>看到已经连接到了PC4主机上<br>   <img src="https://raw.githubusercontent.com/muqing15/blogphotos/master/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/%E9%AA%8C%E8%AF%81%E8%BF%9E%E6%8E%A5pc4.png"></p>
+<h2 id="1-2、多个局域网"><a href="#1-2、多个局域网" class="headerlink" title="1.2、多个局域网"></a>1.2、多个局域网</h2><p><a href="##1.1">1.1</a>中实现了和PC3同一个局域网的主机实现公网访问的方式，如1.1中的图所示，在只有一台公网主机的情况下，怎么让PC3和PC1的局域网都能实现内网穿透？这就是下面要说明的，多个局域网通过一台ECS实现内网穿透。<br>其做法很简单，在PC1的局域网中重新实现一遍PC3和PC4被公网访问的步骤即可。<br>1.在PC1上安装frp(具体可参考【内网穿透一】)<br>2.配置PC3上的<code>frpc.ini</code>配置文件</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr &#x3D; 160.73.28.19</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line">token&#x3D;password2021</span><br><span class="line"></span><br><span class="line">[PC1]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22</span><br><span class="line">remote_port &#x3D; 6002</span><br></pre></td></tr></table></figure>
+<p>3.启动PC1的frpc服务<br>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd $frp_path  # frp文件所在目录</span><br><span class="line">./frpc</span><br></pre></td></tr></table></figure><br><em>让PC1局域网中的主机例如PC2也能被公网访问，只要按照1.1中所述再设置一下PC2的相关配置即可，这里不再赘述。</em></p>
+<h1 id="2、总结"><a href="#2、总结" class="headerlink" title="2、总结"></a>2、总结</h1><ul>
+<li>今天主要是在内网穿透一个主机的基础上，将访问扩展到整个局域网以及多个局域网上<ul>
+<li>同一个局域网只需要配置一台frp客户端即可，其他主机通过frp客户端主机进行流量转发</li>
+<li>多个局域网，每个局域网都要有一台主机作为frp客户端，与frp服务端(公网主机)建立连接</li>
+<li>配置frpc.ini时，一定要注意主机名不能重复</li>
+<li>frpc.ini中的type不一定是tcp，也可以是其他协议如http等，访问的local_port也不一定是22端口</li>
+</ul>
+</li>
+<li>目前的实验只能将frp服务前台运行，可以看到是很不方便的，【内网穿透三】只要讲解一下怎么将frp后台运行，甚至使用systemctl命令管理主机上的frp服务</li>
+</ul>
+
       
 
       
@@ -334,7 +348,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E8%AE%BF%E9%97%AE%E5%A4%9A%E5%8F%B0%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%BB%E6%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">1、访问多台局域网主机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E5%90%8C%E4%B8%80%E4%B8%AA%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、同一个局域网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81%E5%A4%9A%E4%B8%AA%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、多个局域网</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81frp%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C"><span class="toc-number">2.</span> <span class="toc-text">2、frp后台运行</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E8%AE%BF%E9%97%AE%E5%A4%9A%E5%8F%B0%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%BB%E6%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">1、访问多台局域网主机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E5%90%8C%E4%B8%80%E4%B8%AA%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、同一个局域网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81%E5%A4%9A%E4%B8%AA%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、多个局域网</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">2.</span> <span class="toc-text">2、总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
